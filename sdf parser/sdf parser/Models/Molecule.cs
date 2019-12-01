@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace sdf_parser.Models
+namespace SDFParser.Models
 {
 	 public partial class Molecule
 	 {

@@ -1,6 +1,6 @@
 {
-  "short_name": "sdf_parser",
-  "name": "sdf_parser",
+  "short_name": "SDFParser",
+  "name": "SDFParser",
   "icons": [
     {
       "src": "favicon.ico",

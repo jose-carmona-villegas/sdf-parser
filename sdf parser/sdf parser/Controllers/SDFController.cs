@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using sdf_parser.Models;
+using SDFParser.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sdf_parser.Controllers
+namespace SDFParser.Controllers
 {
 	 [Route("api/[controller]")]
 	 public class SDFController : Controller

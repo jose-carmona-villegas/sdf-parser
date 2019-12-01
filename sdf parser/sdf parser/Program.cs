@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace sdf_parser
+namespace SDFParser
 {
 	 public class Program
     {

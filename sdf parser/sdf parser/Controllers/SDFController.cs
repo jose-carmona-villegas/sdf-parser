@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace sdf_parser.Controllers
 {
 	 [Route("api/[controller]")]
 	 public class SDFController : Controller
 	 {
-		  private static string[] Summaries = new[]
-		  {
-				"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-		  };
-
 		  [HttpGet("[action]")]
 		  public IEnumerable<Molecule> Molecules()
 		  {
@@ -61,6 +60,34 @@ namespace sdf_parser.Controllers
 						  ExactMass="201.978134"
 					 }
 				};
+		  }
+
+		  [HttpPost("Upload")]
+		  public async Task<IActionResult> Upload(List<IFormFile> files)
+		  {
+				if (files.Count != 1)
+				{
+					 return BadRequest();
+				}
+
+				IFormFile file = files.First();
+				long size = file.Length;
+
+				string fileExtension = Path.GetExtension(file.FileName);
+				if (size <= 0 || fileExtension != ".sdf" || file.ContentType != MediaTypeNames.Application.Octet)
+				{
+					 return UnprocessableEntity();
+				}
+				
+				var result = new StringBuilder();
+				using (var reader = new StreamReader(file.OpenReadStream()))
+				{
+					 while (reader.Peek() >= 0)
+						  result.AppendLine(await reader.ReadLineAsync());
+				}
+				string fileContent = result.ToString();
+
+				return Ok(new { file.FileName, size, fileContent });
 		  }
 
 		  public class Molecule

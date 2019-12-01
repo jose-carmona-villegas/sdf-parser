@@ -17,19 +17,19 @@ export class SDFViewer extends Component {
 	 static renderMoleculesTable(molecules) {
 		  return (
 				molecules.map(molecule =>
-					 <div key={molecule.id} className="col-sm">
+					 <div key={molecule.ID} className="col-sm">
 						  <div className="container" style={{backgroundColor: SDFViewer.generateRandomBrightColor()}}>
-								<div className="row">Structure: {molecule.structure}</div>
-								<div className="row">Purity: {molecule.purity}</div>
-								<div className="row">Molecular weight: {molecule.molecularWeight}</div>
-								<div className="row">Molecular formula: {molecule.molecularFormula}</div>
-								<div className="row">Submitter email: {molecule.submitterEmail}</div>
-								<div className="row">Submitter name: {molecule.submitterName}</div>
-								<div className="row">Submission date: {molecule.submissionDate}</div>
-								<div className="row">Amount: {molecule.amount}</div>
-								<div className="row">Chemical name: {molecule.chemicalName}</div>
-								<div className="row">ID: {molecule.id}</div>
-								<div className="row">Exact mass: {molecule.exactMass}</div>
+								<div className="row">Structure: {molecule.Structure}</div>
+								<div className="row">Purity: {molecule["Purity_(_)"]}</div>
+								<div className="row">Molecular weight: {molecule["Molecular_Weight"]}</div>
+								<div className="row">Molecular formula: {molecule["Molecular_Formula"]}</div>
+								<div className="row">Submitter email: {molecule["Submitter_(E_mail)"]}</div>
+								<div className="row">Submitter name: {molecule["Submitter_(Name)"]}</div>
+								<div className="row">Submission date: {molecule["Submission_Date"]}</div>
+								<div className="row">Amount: {molecule.Amount}</div>
+								<div className="row">Chemical name: {molecule["Chemical_Name"]}</div>
+								<div className="row">ID: {molecule.ID}</div>
+								<div className="row">Exact mass: {molecule["Exact_Mass"]}</div>
 						  </div>
 					 </div>
 				));

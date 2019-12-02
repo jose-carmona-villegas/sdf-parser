@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using SDFParser.Models;
+using SDFParser.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +16,19 @@ namespace SDFParser.Controllers
 	 [Route("api/[controller]")]
 	 public class SDFController : Controller
 	 {
+		  private IMemoryCache _memoryCache;
+
+		  public SDFController(IMemoryCache memoryCache)
+		  {
+				_memoryCache = memoryCache;
+		  }
+
+		  [HttpGet("ParsedSDF")]
+		  public string ParsedSDF()
+		  {
+				return _memoryCache.Get("SDFParsedToJson")?.ToString();
+		  }
+
 		  [HttpGet("[action]")]
 		  public IEnumerable<Molecule> Molecules()
 		  {
@@ -47,7 +63,12 @@ namespace SDFParser.Controllers
 				}
 				string fileContent = result.ToString();
 
-				return Ok(new { file.FileName, size, fileContent });
+				var json = SDFToJsonParser.ToJson(fileContent);
+
+				var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1));
+				_memoryCache.Set("SDFParsedToJson", json, cacheEntryOptions);
+
+				return Redirect("/");
 		  }
 	 }
 }

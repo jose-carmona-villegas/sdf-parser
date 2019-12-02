@@ -20,7 +20,7 @@ export class NavMenu extends Component {
 						  <Nav>
 								<LinkContainer to={'/'} exact>
 									 <NavItem>
-										  <Glyphicon glyph='home' /> SDF Viewer
+										  <Glyphicon glyph='home' /> SDF to JSON Converter
 									 </NavItem>
 								</LinkContainer>
 								<LinkContainer to={'/sdfviewer'}>

@@ -36,7 +36,7 @@ Still pending:
 - If the amount of users is extremely large, it might be necessary to process the parsings in a set of queues (depending on our available resources).
 - Validate the JSON (for now I manually checked the outputs were valid on [JSON Formatter & Validator](https://jsonformatter.curiousconcept.com).
 - Validate the input SDF files (currently the application assumes the format will be valid, although it makes sure the file's size, extension and MIME type are valid).
-- Unit testing will require implementing some adapters or refactoring some static functions (Parser and Molecule).
+- Unit testing will require implementing some adapters or refactoring some static functions (Parser and Molecule). Using [xUnit](https://xunit.net) is recommended since its high paralellization capabilities would maximize efficiency. [NSubstitute](https://nsubstitute.github.io) as a mocking library is highly recommended due to its simple and readable syntax.
 - The serializable class Molecule assumes only supports some attributes, but since the attribute names are not set by the format, a generic class could be implemented, or a different representation should be used (such as the internal representation in the parser). The Molecule class was generated using [Quicktype](https://quicktype.io/) to easily mock data and work on the viewer UI.
 - Several libraries could be used to expand the application's functionality, such as [Open Babel](http://openbabel.org) or [RDKit](http://www.rdkit.org/). In the case of RDKit, as it has a C++ implementation, a direct usage could be achieved though the .NET Interop package.
 - Through WebGL, a 3D rendering of the molecule could also be served.

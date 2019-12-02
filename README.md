@@ -1,8 +1,9 @@
 # SDFParser
 
-## [Published app on Azure](https://sdfparser.azurewebsites.net)
+## Links
 
-## [Published repository](https://github.com/Zalioth/sdf-parser)
+- [Published app on Azure](https://sdfparser.azurewebsites.net)
+- [Published repository](https://github.com/Zalioth/sdf-parser)
 
 ## Technology stack
 
